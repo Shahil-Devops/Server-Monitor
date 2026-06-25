@@ -1,68 +1,32 @@
-🖥️ Server Monitor
+# 🖥️ Server Monitor
 
-A simple Bash script to monitor server health and save the results to a log file.
+![Bash](https://img.shields.io/badge/Bash-Scripting-green)
+![Linux](https://img.shields.io/badge/Linux-Ubuntu-orange)
+![Status](https://img.shields.io/badge/Project-Active-brightgreen)
 
-✨ Features
+A simple **Bash-based server monitoring tool** that checks system health and logs results.
 
-✅ Check Memory Usage
+---
 
-✅ Check Disk Usage
+## ⚙️ Features
 
-✅ Display System Uptime
+- 🧠 Memory Usage Check
+- 💽 Disk Usage Check
+- ⏱️ System Uptime Display
+- 🚨 Alerts when usage exceeds threshold (80%)
+- 📝 Logs output to `server_health.log`
 
-✅ Show warnings when usage exceeds 80%
+---
 
-✅ Save health reports to "server_health.log"
+## 📊 Sample Output
 
-🛠️ Requirements
-
-- Linux / Ubuntu
-- Bash
-
-🚀 Usage
-
-Make the script executable
-
-chmod +x monitor.sh
-
-Run the script
-
-./monitor.sh
-
-View the generated log
-
-cat server_health.log
-
-📋 Sample Output
-
-Memory Usage: 42%
-✅ Memory usage is healthy
-
-Disk Usage: 37%
-✅ Disk usage is healthy
-
-System Uptime:
-up 3 hours, 25 minutes
-
-📁 Project Structure
-
-server-monitor/
-├── monitor.sh
-├── README.md
-└── .gitignore
-
-🎯 Purpose
-
-This project was built to practice:
-
-- 🐧 Linux Commands
-- 📝 Bash Scripting
-- 📊 System Monitoring
-- 📂 Log File Management
-- 🔀 Git & GitHub
-
-👨‍💻 Author
-
-Mahammad Shahil
-
-Learning DevOps 🚀
+```text id="rme002"
++-----------------------------+
+| Server Health Check        |
++-----------------------------+
+| Memory Usage: 42%  ✅       |
+| Disk Usage:   37%  ✅       |
+| Uptime: 3 hours 25 minutes  |
++-----------------------------+
+| Status: All Systems Normal  |
++-----------------------------+
