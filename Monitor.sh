@@ -1,27 +1,35 @@
 #!/bin/bash
 set -e
-LOG_FILE="server_health.log"
+# Memory Usage
+MEMORY_USAGE=$(free | awk '/Mem:/ {printf("%.0f", $3/$2 * 100)}')
 
-echo "============================" >> $LOG_FILE
-echo "Server Health Check - $(date)" >> $LOG_FILE
-echo "============================" >> $LOG_FILE
+echo "Memory Usage: ${MEMORY_USAGE}%" >> "$LOG_FILE"
 
-echo "CPU Usage:" >> $LOG_FILE
-top -bn1 | grep "Cpu(s)" >> $LOG_FILE
+if [ "$MEMORY_USAGE" -ge 80 ]
+then
+    echo "🚨 WARNING: Memory usage above 80%" >> "$LOG_FILE"
+else
+    echo "✅ Memory usage is healthy" >> "$LOG_FILE"
+fi
 
-echo "" >> $LOG_FILE
-echo "Memory Usage:" >> $LOG_FILE
-free -h >> $LOG_FILE
+echo "" >> "$LOG_FILE"
 
-echo "" >> $LOG_FILE
-echo "Disk Usage:" >> $LOG_FILE
-df -h >> $LOG_FILE
+# Disk Usage
+DISK_USAGE=$(df / | awk 'NR==2 {gsub("%","",$5); print $5}')
 
-echo "" >> $LOG_FILE
-echo "Top 5 Memory Consuming Processes:" >> $LOG_FILE
-ps aux --sort=-%mem | head -6 >> $LOG_FILE
+echo "Disk Usage: ${DISK_USAGE}%" >> "$LOG_FILE"
 
-echo "" >> $LOG_FILE
-echo "Health Check Completed!" >> $LOG_FILE
+if [ "$DISK_USAGE" -ge 80 ]
+then
+    echo "🚨 WARNING: Disk usage above 80%" >> "$LOG_FILE"
+else
+    echo "✅ Disk usage is healthy" >> "$LOG_FILE"
+fi
 
-echo "Server health report saved to $LOG_FILE"
+echo "" >> "$LOG_FILE"
+
+# Uptime
+echo "System Uptime:" >> "$LOG_FILE"
+uptime -p >> "$LOG_FILE"
+
+echo "" >> "$LOG_FILE"
